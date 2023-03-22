@@ -1,7 +1,6 @@
 package pkg
 
 import (
-	"fmt"
 	"github.com/gorilla/schema"
 	"net/url"
 	"strings"
@@ -96,13 +95,11 @@ type VirtualMachineInput struct {
 	Watchdog          string `schema:"watchdog"`
 }
 
-func (v *VirtualMachineInput) CreateVirtualMachine() {
+func (v *VirtualMachineInput) CreateVirtualMachine() *strings.Reader {
 	encoder := schema.NewEncoder()
 	form := url.Values{}
 
 	err := encoder.Encode(v, form)
 	CheckErr(err)
-	fmt.Println(strings.NewReader(form.Encode()))
-
-	//SendApiPostRequest(cookie, csrf, client, endpoint, strings.NewReader(form.Encode()))
+	return strings.NewReader(form.Encode())
 }
