@@ -1,10 +1,11 @@
 name: Go
 on: [push]
-permissions:
-  id-token: write
-  contents: read
+
 jobs:
   infra:
+    permissions:
+      id-token: write
+      contents: read
     runs-on: ubuntu-latest
 
     steps:
