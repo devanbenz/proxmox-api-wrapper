@@ -1,0 +1,20 @@
+name: Go
+on: [push]
+
+jobs:
+  infra:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    #      - uses: actions/checkout@v4
+    #      - uses: actions/setup-go@v3
+    #        with:
+    #          go-version: 'stable'
+    - name: Configure AWS Credentials
+      uses: aws-actions/configure-aws-credentials@v3
+      with:
+        role-to-assume: arn:aws:iam::613594639814:role/url-shortener-web-service
+        aws-region: us-east-1
+    - run: env
